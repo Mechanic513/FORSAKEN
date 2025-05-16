@@ -99,6 +99,12 @@ button8.Size = UDim2.new(0, 448,0, 47)
 button8.Text = "Forsaken Generator ESP"
 button8.TextScaled = true
 
+local button9 = Instance.new("TextButton", sframe)
+button9.BackgroundColor3 = Color3.fromRGB(46, 192, 255)
+button9.Size = UDim2.new(0, 448,0, 47)
+button9.Text = "Forsaken Item ESP"
+button9.TextScaled = true
+
 screenGui.ResetOnSpawn = false
 
 
@@ -189,6 +195,26 @@ button8.MouseButton1Click:Connect(function()
 				elseif v:FindFirstChild("Highlight") then
 					v.Highlight:Destroy()
 				end
+			end
+		end
+	end
+end)
+
+button9.MouseButton1Click:Connect(function()
+	if workspace:FindFirstChild("Map") then
+		for i,v in pairs(workspace.Map.Ingame:GetChildren()) do
+			if v:IsA("Tool") then
+				if not v:FindFirstChild("Highlight") then
+					local thl = Instance.new("Highlight", v)
+					thl.FillColor = Color3.fromRGB(0, 17, 255)
+				elseif v:FindFirstChild("Highlight") then
+					v.Highlight:Destroy()
+				end
+				v.Equipped:Connect(function()
+					if v:FindFirstChild("Highlight") then
+						v.Highlight:Destroy()
+					end
+				end)
 			end
 		end
 	end
