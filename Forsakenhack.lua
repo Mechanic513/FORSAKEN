@@ -146,7 +146,7 @@ button7.MouseButton1Click:Connect(function()
 	if not workspace.Players.Killers:FindFirstChildOfClass("Model"):FindFirstChild("ViewLine") then
 		local line = Instance.new("Part", workspace.Players.Killers:FindFirstChildOfClass("Model"))
 		line.Name = "ViewLine"
-		line.Position = workspace.Players.Killers:FindFirstChildOfClass("Model").Head.Position
+		line.CFrame = workspace.Players.Killers:FindFirstChildOfClass("Model").Head.CFrame
 		local weld = Instance.new("WeldConstraint", line)
 		weld.Part1 = workspace.Players.Killers:FindFirstChildOfClass("Model").Head
 		weld.Part0 = line
