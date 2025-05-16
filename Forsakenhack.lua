@@ -181,7 +181,7 @@ end)
 
 button8.MouseButton1Click:Connect(function()
 	if workspace:FindFirstChild("Map") then
-		for i,v in pairs(workspace.Map.Ingame:GetChildren()) do
+		for i,v in pairs(workspace.Map.Ingame.Map:GetChildren()) do
 			if v.Name == "Generator" then
 				if not v:FindFirstChild("Highlight") then
 					local ghl = Instance.new("Highlight", v)
