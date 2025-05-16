@@ -63,18 +63,30 @@ button4.BackgroundColor3 = Color3.fromRGB(46, 192, 255)
 button4.Size = UDim2.new(0, 448,0, 47)
 button4.Text = "Enter Sound id for lobby music"
 button4.TextScaled = true
+button4.LayoutOrder = 1
 
 local button5 = Instance.new("TextBox", sframe)
 button5.BackgroundColor3 = Color3.fromRGB(46, 192, 255)
 button5.Size = UDim2.new(0, 448,0, 47)
 button5.Text = "Enter Sound Play Speed"
 button5.TextScaled = true
+button5.LayoutOrder = 1
 
 local button6 = Instance.new("TextBox", sframe)
 button6.BackgroundColor3 = Color3.fromRGB(46, 192, 255)
 button6.Size = UDim2.new(0, 448,0, 47)
 button6.Text = "Enter Sound Id For Map Ambience"
 button6.TextScaled = true
+button6.LayoutOrder = 1
+
+local button7 = Instance.new("TextButton", sframe)
+button7.BackgroundColor3 = Color3.fromRGB(46, 192, 255)
+button7.Size = UDim2.new(0, 448,0, 47)
+button7.Text = "Forsaken Killer View Line"
+button7.TextScaled = true
+
+screenGui.ResetOnSpawn = false
+
 
 cbutton.MouseButton1Click:Connect(function()
 	frame.Visible = false
@@ -127,6 +139,25 @@ button3.MouseButton1Click:Connect(function()
 		end
 	else
 		print("GAVNO")
+	end
+end)
+
+button7.MouseButton1Click:Connect(function()
+	if not workspace.Players.Killers:FindFirstChildOfClass("Model"):FindFirstChild("ViewLine") then
+		local line = Instance.new("Part", workspace.Players.Killers:FindFirstChildOfClass("Model"))
+		line.Name = "ViewLine"
+		line.Position = workspace.Players.Killers:FindFirstChildOfClass("Model").Head.Position
+		local weld = Instance.new("WeldConstraint", line)
+		weld.Part1 = workspace.Players.Killers:FindFirstChildOfClass("Model").Head
+		weld.Part0 = line
+		line.CanCollide = false
+		line.CanQuery = false
+		line.Size = Vector3.new(0.275, 0.271, 105.653)
+		local hl = Instance.new("Highlight", line)
+		hl.FillTransparency = 0.9
+		hl.OutlineTransparency = 1
+	elseif workspace.Players.Killers:FindFirstChildOfClass("Model"):FindFirstChild("ViewLine") then
+		workspace.Players.Killers:FindFirstChildOfClass("Model"):FindFirstChild("ViewLine"):Destroy()
 	end
 end)
 
