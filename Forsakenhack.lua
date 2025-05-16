@@ -19,10 +19,18 @@ label.Text = "Blu3gu1"
 label.TextScaled = true
 
 local cbutton = Instance.new("TextButton", frame)
-cbutton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-cbutton.Position = UDim2.new(0.895, 0, -0.175, 0)
+cbutton.BackgroundColor3 = Color3.fromRGB(172, 199, 202)
+cbutton.Position = UDim2.new(0.795, 0, -0.162, 0)
 cbutton.Size = UDim2.new(0, 48, 0, 50)
-cbutton.Text = "Hide"
+cbutton.Text = "-"
+cbutton.TextScaled = true
+
+local cgbutton = Instance.new("TextButton", cbutton)
+cgbutton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+cgbutton.Position = UDim2.new(1, 0, 0, 0)
+cgbutton.Size = UDim2.new(0, 48, 0, 50)
+cgbutton.Text = "X"
+cgbutton.TextScaled = true
 
 local sframe = Instance.new("ScrollingFrame", frame)
 sframe.BackgroundTransparency = 1
@@ -85,12 +93,22 @@ button7.Size = UDim2.new(0, 448,0, 47)
 button7.Text = "Forsaken Killer View Line"
 button7.TextScaled = true
 
+local button8 = Instance.new("TextButton", sframe)
+button8.BackgroundColor3 = Color3.fromRGB(46, 192, 255)
+button8.Size = UDim2.new(0, 448,0, 47)
+button8.Text = "Forsaken Generator ESP"
+button8.TextScaled = true
+
 screenGui.ResetOnSpawn = false
 
 
 cbutton.MouseButton1Click:Connect(function()
 	frame.Visible = false
 	vbutton.Visible = true
+end)
+
+cgbutton.MouseButton1Click:Connect(function()
+	screenGui:Destroy()
 end)
 
 vbutton.MouseButton1Click:Connect(function()
@@ -158,6 +176,21 @@ button7.MouseButton1Click:Connect(function()
 		hl.OutlineTransparency = 1
 	elseif workspace.Players.Killers:FindFirstChildOfClass("Model"):FindFirstChild("ViewLine") then
 		workspace.Players.Killers:FindFirstChildOfClass("Model"):FindFirstChild("ViewLine"):Destroy()
+	end
+end)
+
+button8.MouseButton1Click:Connect(function()
+	if workspace:FindFirstChild("Map") then
+		for i,v in pairs(workspace.Map:GetChildren()) do
+			if v.Name == "Generator" then
+				if not v:FindFirstChild("Highlight") then
+					local ghl = Instance.new("Highlight", v)
+					ghl.FillColor = Color3.fromRGB(255, 183, 0)
+				elseif v:FindFirstChild("Highlight") then
+					v.Highlight:Destroy()
+				end
+			end
+		end
 	end
 end)
 
